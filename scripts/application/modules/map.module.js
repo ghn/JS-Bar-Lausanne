@@ -31,7 +31,7 @@ function(Backbone) {
 			var marker = new google.maps.Marker({
 				position: pos,
 				map: this.map,
-				icon: '/assets/img/me.png',
+				icon: 'assets/img/me.png',
 				animation: google.maps.Animation.DROP,
 			});	
 		},
@@ -69,7 +69,7 @@ function(Backbone) {
 					self.markers.push( new google.maps.Marker({
 						position: new google.maps.LatLng(x, y),
 						map: self.map,
-						icon: '/assets/img/beer.png',
+						icon: 'assets/img/beer.png',
 						animation: google.maps.Animation.DROP,
 					}));
 				}
