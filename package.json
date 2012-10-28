@@ -1,0 +1,9 @@
+{
+	"name" : "Beer-Lausanne",
+	"description" : "Localize the closest bar in Lausanne",
+	"author" : "ghn",
+	"version" : "0.1.0",
+	"dependencies" : {
+		"express" : "*"
+	}
+}
