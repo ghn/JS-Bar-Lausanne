@@ -2,13 +2,13 @@
 	"name" : "Les Brasseurs",
 	"desc" : "lorem",
 	"image": "brasseurs.jpg",
-	"terrasse" : true,
+	"terrasse" : false,
 	"position" : {
 		"lo" : "46.520587",
 		"la" : "6.632512"
 	},
 	"hh" : true,
-	"food" : false
+	"food" : true
 },{
 	"name" : "L'étoile blanche",
 	"desc" : "asdfkgdsajfhs",
@@ -17,8 +17,8 @@
 		"lo" : "46.519588",
 		"la" : "6.63724"
 	},
-	"terrasse" : false,
-	"hh" : [],
+	"terrasse" : true,
+	"hh" : false,
 	"food" : true
 },{
 	"name" : "Great Escape",
@@ -29,6 +29,6 @@
 		"la" : "6.633138"
 	},
 	"terrasse" : true,
-	"hh" : [],
+	"hh" : true,
 	"food" : true
 }]

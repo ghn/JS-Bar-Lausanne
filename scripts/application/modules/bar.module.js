@@ -22,13 +22,13 @@ function(Backbone) {
 		
 		getFood : function(bars) {
 			return bars.filter(function(el) {
-				return  el.get('food');
+				return el.get('food');
 			});
 		},
 		
 		getHH : function(bars) {
 			return bars.filter(function(el) {
-				return ! _.isEmpty(el.get('hh'));
+				return el.get('hh');
 			});
 		},
 		

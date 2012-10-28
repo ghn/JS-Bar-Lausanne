@@ -24,7 +24,7 @@ require.config({
 	
 	use: {
 		backbone: {
-			deps: ["use!underscore", "jquery"],
+			deps: ["use!underscore", "jquery", "bootstrap"],
 			attach: "Backbone"
 		},
 		

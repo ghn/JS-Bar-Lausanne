@@ -7,10 +7,11 @@ define([
 	
 	// Modules
 	'modules/bar.module',
-	"modules/distance.module"
+	'modules/map.module',
+	"modules/distance.module",
 ],
 
-function(Backbone, Dico, Bars, Distance) {
+function(Backbone, Dico, Bars, Map, Distance) {
 	
 	var Homepage = Backbone.View.extend({
 	
@@ -24,6 +25,8 @@ function(Backbone, Dico, Bars, Distance) {
 		
 		map : null, 		// instance of Google map
 		distance : null,	// instance of Distance
+		map : null,			// instance of Map
+		bars : null,		// filtered list of bars
 		
 		events : {
 			'click .btn.terrasse'	: 'filterTerrasse',
@@ -32,16 +35,24 @@ function(Backbone, Dico, Bars, Distance) {
 		},
 	
 		initialize : function() {
-			this.init();
 			this.distance = new Distance;
+			this.map = new Map;
+			
+			this.init();
+			
+			// enable tooltips
+			$('button[rel="tooltip"]').tooltip();
 		},
 		
 		init : function() {
 			var self = this;
-			this.init_map();
 			Bars.fetch({
 				success : function() {
 					self.render();
+					self.map.get_my_position(function() {
+						self.map.init_map();
+						self.render_map();
+					});
 				}
 			});
 		},
@@ -96,61 +107,20 @@ function(Backbone, Dico, Bars, Distance) {
 		 */
 		render : function() {
 			var tmp = $('#templateBar').html();
-			var bars = Bars.filterBars(this.buttons);
-			
+			this.bars = Bars.filterBars(this.buttons);
 			
 			$('#lBar').html("");
-			$('#lBar').append( _.template(tmp, {'bars': bars}) );
-		},
-		
-		init_map : function() {
-			var self = this;
-			if (navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition(function(positions) {
-					var pos = new google.maps.LatLng(positions.coords.latitude, positions.coords.longitude);
-					
-					self.distance.setMyPosition({la : positions.coords.latitude, lo : positions.coords.longitude});
-					console.info(self.distance.getClosestBars(Bars.filterBars(self.buttons)))
-					
-					var mapOptions = {
-						center: pos,
-						zoom: 14,
-						mapTypeId: google.maps.MapTypeId.ROADMAP
-					};
-					
-					self.map = new google.maps.Map($('.map')[0], mapOptions);
-					
-					var marker = new google.maps.Marker({
-						position: pos,
-						map: self.map,
-						icon: '/assets/img/me.png', //'http://playground.germain.cn/tmp/n.png',
-						animation: google.maps.Animation.DROP,
-					});
-					
-					self.render_map();
-				});
-			}
+			$('#lBar').append( _.template(tmp, {'bars': this.bars}) );
+			
+			this.render_map();
 		},
 		
 		/**
 		 *
 		 */
 		render_map : function() {
-			var self = this;
-			
-			Bars.each(function(bar) {
-				var x = bar.get('position').lo;
-				var y = bar.get('position').la;
-				
-				if (! _.isUndefined(x) && ! _.isUndefined(y)) {
-					var marker = new google.maps.Marker({
-						position: new google.maps.LatLng(x, y),
-						map: self.map,
-						icon: '/assets/img/beer.png', //'http://playground.germain.cn/tmp/n.png',
-						animation: google.maps.Animation.DROP,
-					});
-				}
-			});
+			this.map.reset_marker();
+			this.map.place_marker(this.bars);
 		}
 	});
 	

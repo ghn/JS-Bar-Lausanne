@@ -1,59 +1,14 @@
 body {
-  padding-top: 20px;
+	padding-top: 50px;
 }
-div.form div.control-group label {
-  display: inline-block;
-  width: 200px;
-  line-height: 28px;
-  text-align: right;
-  margin-right: 15px;
+div.bar {
+	padding: 10px 0;
+	border-bottom: 2px solid #ddd;
 }
-div.form div.control-group div.controls {
-  display: inline-block;
+div.map {
+	min-height: 600px;
 }
-div.option {
-  display: inline-block;
-}
-div.row {
-  margin-top: 40px;
-}
-fieldset {
-  margin-bottom: 15px;
-}
-div#current-quote {
-  border: 1px solid #43AEDC;
-  border-radius: 5px;
-  padding: 15px;
-}
-div#help {
-  border-radius: 5px;
-  padding: 15px;
-}
-fieldset div.group {
-  border-bottom: 1px solid #eee;
-  margin-bottom: 15px;
-}
-fieldset div.actions {
-  text-align: right;
-}
-
-div.github img {
-	z-index: 2000;
-}
-
-footer.footer {
-	background-color: rgb(245, 245, 245);
-	border-top-color: 	rgb(229, 229, 229);
-	border-top-style: solid;
-	border-top-width: 1px;
-	color: rgb(51, 51, 51);
-	display: block;
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-	font-size: 14px;
-	line-height: 20px;
-	margin-top: 70px;
-	padding-bottom: 70px;
-	padding-left: 0px;
-	padding-right: 0px;
-	padding-top;
+div.commands {
+	margin-bottom: 10px;
+	margin-top: 25px;
 }
